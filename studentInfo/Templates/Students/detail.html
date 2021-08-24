@@ -7,11 +7,12 @@ Student Detail
 {% endblock %}
 {% block content %}
 <span >
-    <center ><h1 style="color: thistle;">Student Detail</h1></center>
+    <center class="container"><h1 style="color: thistle;margin-top: 100px;">Student Details</h1></center>
+
 </span>
-<hr><center>
-    <div class="container" style="margin-top:15px;">
-        <div class="col-md-11 container card mx-3 ">
+<center>
+    <div class="container">
+    <div class="col-md-11 container card mx-3 ">
                 <div class="col-md-12 my-1">
                         <table class="table">
                             <tr>
@@ -88,6 +89,8 @@ Student Detail
                             </tr>
                         </table>
                     </div>
+                {% if request.user.is_authenticated %}
+
                     <a href="{% url 'Students:edit' roll=student.roll_no%}" class="btn btn-primary my-3">edit</a>
                 <div class="col-md-12">
                     <form method="POST" action="{% url 'Students:delete' roll=student.roll_no %}">
@@ -95,6 +98,7 @@ Student Detail
                         <button type="submit" class="btn btn-danger">delete</button>
                     </form>
                 </div>
+                {% endif %}
             </div>
     </div>
 </center>

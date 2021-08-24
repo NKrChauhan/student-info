@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+{% endblock %}
+{% block title %}
+Link Grabber
+{% endblock %}
+{% block content %}
+<div class="jumbotron container-fluid my-5" method="POST">
+        <center class="container">
+            <form class="form-inline ml-auto" action="{% url 'linksgrab:links' %}" method="get">
+                <input class="form-control-md mr-sm" type="text" name="url" id="search" value='{{request.GET.url}}' placeholder="enter the valid url"/>
+                <button class="btn btn-success btn-sm" type="submit">Grab</button>
+            </form>            
+        </center>
+        <hr/>
+        <center class="container">
+            {% for link in links %}
+            <div class="container my-5">
+                <span class="nav nav-link">{{link}}</span>
+            </div>
+            <hr/>
+            {% endfor %}
+        </center>
+    </div>
+{% endblock %}

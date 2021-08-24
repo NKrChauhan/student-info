@@ -7,9 +7,8 @@ Students
 {% endblock %}
 {% block content %}
 <span>
-    <center ><h1 style="color: thistle;">Student List</h1></center>
+    <center class="container"><h1 style="color: thistle;margin-top: 100px;">Student List</h1></center>
 </span>
-<hr>
 <center>
     <div class="container-fluid px-0 py-0 mx-0 my-0" style="width: 70vw;" >
         <div class="row">
@@ -65,14 +64,15 @@ Students
                         </table>
                     </div>
                 </a>
-                <div class="col-md-12" style="left:50%;top:10%">
+                {% if request.user.is_authenticated %}
+                <div class="col-md-12" style="top:10%">
                     <form method="POST" action="{% url 'Students:delete' roll=student.roll_no %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">delete</button>
                     </form>
                 </div>
+                {% endif %}
             </div>
-            <hr/>
             {% endfor %}
         </div>
         <center>

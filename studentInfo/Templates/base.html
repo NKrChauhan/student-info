@@ -30,11 +30,17 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="container" style="background-color:rgba(6, 27, 38, 0.87);">
-      <form class="form-control-sm form-control form-control-inline" action="{% url 'Students:search' %}" method="get">
-        <input type="text" name="q" id="search" value='{{request.GET.q}}' placeholder="enter name of student"/>
-        <button class="btn btn-primary btn-sm" type="submit">search</button>
-    </form>
+    <style>
+      body{
+        background-image: url('https://images.pexels.com/photos/5211430/pexels-photo-5211430.jpeg');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+    {% include 'navbar.html' %}
+    <div class="container-fluid">
       {% block content %}
       {% endblock %}
     </div>
