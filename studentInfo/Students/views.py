@@ -1,10 +1,11 @@
 from django.db import models
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from .models import Student , StudentAcademics
 from django.views.generic import ListView
 from .forms import StudentAcaForm,StudentForm
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 class home(ListView):
     template_name = 'Students/home.html'
@@ -38,6 +39,7 @@ class search(ListView):
         context["students"] = self.get_queryset()
         return context 
 
+@login_required
 def create(request,*args, **kwargs):
     if(request.method == 'POST'):
         roll_no     = request.POST.get('roll_no')
@@ -75,7 +77,7 @@ def detail(request,roll,*args, **kwargs):
        }
     return render(request=request, template_name='Students/detail.html', context=data)
 
-
+@login_required
 def delete(request,roll,*args, **kwargs):
     if request.method == 'POST':
         object  = Student.objects.get(roll_no=roll)
@@ -86,7 +88,7 @@ def delete(request,roll,*args, **kwargs):
     return redirect('/')    
       
 
-
+@login_required
 def edit(request, roll, *args, **kwargs):
     object  = Student.objects.get(roll_no=roll)
     object2 = StudentAcademics.objects.get(student=object)
